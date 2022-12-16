@@ -1,36 +1,34 @@
+""" import csv """
 import csv
 from track_orders import TrackOrders
 
 
-def read_file(path_to_file: str, trackOrders: TrackOrders) -> list:
+def analyze_log(path_to_file: str):
+    """ this function parses and writes a new document from specific
+    information provided by the user """
+    content = TrackOrders()
+
     if not path_to_file.endswith(".csv"):
         raise FileNotFoundError(f"Extensão inválida: '{path_to_file}'")
     try:
-        with open(path_to_file) as file:
+        with open(path_to_file, encoding='UTF-8') as file:
             csv_reader = csv.reader(file, delimiter=",")
             for customer, order, day in csv_reader:
-                trackOrders.add_new_order(customer, order, day)
-    except FileNotFoundError:
-        raise FileNotFoundError(f'Arquivo inexistente: {path_to_file}')
+                content.add_new_order(customer, order, day)
+    except FileNotFoundError as err:
+        raise FileNotFoundError(
+            f"Arquivo inexistente: {path_to_file}"
+        ) from err
 
-
-def write_file(content: str) -> None:
     most_ordered_dish = content.get_most_ordered_dish_per_customer("maria")
     quantity_ordered = content.quantity_ordered("arnaldo", "hamburguer")
     never_ordered = content.get_never_ordered_per_customer("joao")
     days_never_visited = content.get_days_never_visited_per_customer("joao")
 
-    with open('data/mkt_campaign.txt', "w") as file:
+    with open('data/mkt_campaign.txt', 'w', encoding='UTF-8') as file:
         file.write(
             f"{most_ordered_dish}\n"
             f"{quantity_ordered}\n"
             f"{never_ordered}\n"
             f"{days_never_visited}\n"
         )
-
-
-def analyze_log(path_to_file: str):
-    track_orders = TrackOrders()
-
-    read_file(path_to_file, track_orders)
-    write_file(track_orders)
