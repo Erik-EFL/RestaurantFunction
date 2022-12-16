@@ -29,3 +29,8 @@ def write_file(content: str) -> None:
         )
 
 
+def analyze_log(path_to_file: str):
+    track_orders = TrackOrders()
+
+    read_file(path_to_file, track_orders)
+    write_file(track_orders)
