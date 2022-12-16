@@ -18,6 +18,13 @@ class TrackOrders:
                 counter += 1
 
         return counter
+
+    def counter_most_frequent(self, customer: str):
+        counter = {}
+        for item in customer:
+            counter[item] = counter.get(item, 0) + 1
+
+        return max(counter, key=counter.get)
     def get_most_ordered_dish_per_customer(self, customer):
         pass
 
