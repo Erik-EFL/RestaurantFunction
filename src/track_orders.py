@@ -10,6 +10,14 @@ class TrackOrders:
     def __len__(self) -> int:
         return len(self.orders)
 
+    def quantity_ordered(self, customer: str, dish: str) -> int:
+        counter = 0
+
+        for order in self.orders:
+            if order["customer"] == customer and order["order"] == dish:
+                counter += 1
+
+        return counter
     def get_most_ordered_dish_per_customer(self, customer):
         pass
 
