@@ -25,6 +25,13 @@ class TrackOrders:
             counter[item] = counter.get(item, 0) + 1
 
         return max(counter, key=counter.get)
+
+    def counter_lass_frequent(self, customer: str):
+        counter = {}
+        for item in customer:
+            counter[item] = counter.get(item, 0) + 1
+
+        return min(counter, key=counter.get)
     def get_most_ordered_dish_per_customer(self, customer):
         pass
 
