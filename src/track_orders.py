@@ -48,7 +48,12 @@ class TrackOrders:
         return self.counter_most_frequent(dishes)
 
     def get_never_ordered_per_customer(self, customer):
-        pass
+        ordered = {
+            entry["order"]
+            for entry in self.orders
+            if entry["customer"] == customer
+        }
+        return self._orders - ordered
 
     def get_days_never_visited_per_customer(self, customer):
         pass
