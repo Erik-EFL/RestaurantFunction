@@ -32,6 +32,12 @@ class TrackOrders:
             counter[item] = counter.get(item, 0) + 1
 
         return min(counter, key=counter.get)
+
+    def add_new_order(self, customer: str, order: str, day: str):
+        self.orders.append({"customer": customer, "order": order, "day": day})
+        self._customers.add(customer)
+        self._orders.add(order)
+        self._days.add(day)
     def get_most_ordered_dish_per_customer(self, customer):
         pass
 
