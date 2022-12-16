@@ -38,8 +38,14 @@ class TrackOrders:
         self._customers.add(customer)
         self._orders.add(order)
         self._days.add(day)
+
     def get_most_ordered_dish_per_customer(self, customer):
-        pass
+        dishes = [
+            entry["order"]
+            for entry in self.orders
+            if entry["customer"] == customer
+        ]
+        return self.counter_most_frequent(dishes)
 
     def get_never_ordered_per_customer(self, customer):
         pass
