@@ -1,11 +1,16 @@
-""" import csv """
+"""
+    import csv
+"""
 import csv
+
 from track_orders import TrackOrders
 
 
 def analyze_log(path_to_file):
-    """ this function parses and writes a new document from specific
-    information provided by the user """
+    """
+        this function parses and writes a new document from specific
+        information provided by the user
+    """
     content = TrackOrders()
 
     if not path_to_file.lower().endswith(".csv"):
